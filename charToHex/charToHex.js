@@ -35,7 +35,7 @@ $(function () {
     });
 
     $("#clear").bind('mousedown', function () {
-        $("#testArea").text('');
+        $("#hexOutput").text('');
         clearInput();
     });
 });
