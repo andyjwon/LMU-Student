@@ -16,9 +16,11 @@
 
 <body>
     <div>
+        <!-- These paragraph tags shouldn't be here if the divs are
+             formatted. -->
         <p>
-            <label for="uri">Please enter your Text:</label>
-            <input type="text" id="uri" />
+            <label for="input">Please enter your Text:</label>
+            <input type="text" id="input" />
             <button id="submit">Submit</button>
             <button id="clear">Clear All</button><br />
             <label for="delimiter">(Optional) Delimiter:</label>
@@ -31,6 +33,7 @@
             Converted Hex will appear below, preceded by delimiter characters:
         </p>
     </div>
+    <div id="hexOutput"></div>
 
     <!-- Begin Copyright Section -->
     <div id="footer">

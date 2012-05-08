@@ -16,21 +16,21 @@ $(function () {
     // Not a constant, but keeping upper-case reminds me to not change
     var BASE = 16,
         clearInput = function () {
-            $("#uri").val('');
+            $("#input").val('');
         };
 
     $("#submit").bind('mousedown', function () {
         var i,
-            hexUri = "",
-            toConvert = $("#uri").val();
+            hex = "",
+            toConvert = $("#input").val();
 
         for (i = 0; i < toConvert.length; i += 1) {
-            hexUri += ($("#delimiter").val() +
+            hex += ($("#delimiter").val() +
                 toConvert.charCodeAt(i).toString(BASE));
         }
         // hexUri is the final output string.
         // I could add an upper-case option.
-        $("#testArea").append(hexUri);
+        $("#hexOutput").append(hex);
         clearInput();
     });
 
