@@ -192,65 +192,27 @@ var KeyframeTweener = {
                 renderingContext.shadowOffsetX = 0;
                 renderingContext.shadowOffsetY = 0;
                 renderingContext.shadowBlur = 0;
-    
-                // Added text to center of heart.
                 renderingContext.fillStyle = "white";
-                renderingContext.font = "12pt Arial";
                 renderingContext.textAlign = "center";
+            },
+
+            heartOne: function (renderingContext) {
+                shapes.heart(renderingContext);
+                renderingContext.font = "12pt Arial";
                 renderingContext.fillText("Be Mine!", 40, 95);
                 renderingContext.stroke();
             },
     
             heartTwo: function (renderingContext) {
-                renderingContext.strokeStyle = "black";
-                renderingContext.fillStyle= "red";
-                renderingContext.beginPath();
-                renderingContext.moveTo(0, 90);
-                renderingContext.lineTo(40, 150);
-                renderingContext.lineTo(80, 90);
-                renderingContext.bezierCurveTo(100, 50, 60, 40, 40, 70);
-                renderingContext.moveTo(0, 90);
-                renderingContext.bezierCurveTo(-20, 50, 20, 40, 40, 70);
-                renderingContext.shadowOffsetX = 3;
-                renderingContext.shadowOffsetY = 4;
-                renderingContext.shadowBlur = 5;
-                renderingContext.shadowColor = "black";
-                renderingContext.fill();
-                renderingContext.shadowOffsetX = 0;
-                renderingContext.shadowOffsetY = 0;
-                renderingContext.shadowBlur = 0;
-    
-                // Added text to center of heart.
-                renderingContext.fillStyle = "white";
+                shapes.heart(renderingContext);
                 renderingContext.font = "12pt Arial";
-                renderingContext.textAlign = "center";
                 renderingContext.fillText("Maybe?", 40, 95);
                 renderingContext.stroke();
             },
     
             heartThree: function (renderingContext) {
-                renderingContext.strokeStyle = "black";
-                renderingContext.fillStyle= "red";
-                renderingContext.beginPath();
-                renderingContext.moveTo(0, 90);
-                renderingContext.lineTo(40, 150);
-                renderingContext.lineTo(80, 90);
-                renderingContext.bezierCurveTo(100, 50, 60, 40, 40, 70);
-                renderingContext.moveTo(0, 90);
-                renderingContext.bezierCurveTo(-20, 50, 20, 40, 40, 70);
-                renderingContext.shadowOffsetX = 3;
-                renderingContext.shadowOffsetY = 4;
-                renderingContext.shadowBlur = 5;
-                renderingContext.shadowColor = "black";
-                renderingContext.fill();
-                renderingContext.shadowOffsetX = 0;
-                renderingContext.shadowOffsetY = 0;
-                renderingContext.shadowBlur = 0;
-    
-                // Added text to center of heart.
-                renderingContext.fillStyle = "white";
+                shapes.heart(renderingContext);
                 renderingContext.font = "bold 5.3pt Arial";
-                renderingContext.textAlign = "center";
                 renderingContext.fillText("Happy Valentines Day!", 40, 85);
                 renderingContext.stroke();
             }
@@ -297,7 +259,7 @@ var KeyframeTweener = {
             },
 
             {
-                draw: shapes.heart,
+                draw: shapes.heartOne,
                 keyframes: [
                     {
                         frame: 0,
