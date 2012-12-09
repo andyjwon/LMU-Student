@@ -168,12 +168,6 @@ var KeyframeTweener = {
                 renderingContext.stroke();
             },
 
-            /*
-             * There are three separate "heart" sprites titled heart, heartTwo and
-             * heartThree. Each heart draws an identical shape but contains 
-             * different text. This is not the most efficient way of doing
-             * this, but it was the quickest for an impromptu demonstration.
-             */
             heart: function (renderingContext) {
                 renderingContext.strokeStyle = "black";
                 renderingContext.fillStyle= "red";
@@ -202,14 +196,14 @@ var KeyframeTweener = {
                 renderingContext.fillText("Be Mine!", 40, 95);
                 renderingContext.stroke();
             },
-    
+
             heartTwo: function (renderingContext) {
                 shapes.heart(renderingContext);
                 renderingContext.font = "12pt Arial";
                 renderingContext.fillText("Maybe?", 40, 95);
                 renderingContext.stroke();
             },
-    
+
             heartThree: function (renderingContext) {
                 shapes.heart(renderingContext);
                 renderingContext.font = "bold 5.3pt Arial";
