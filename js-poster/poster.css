@@ -1,0 +1,82 @@
+/*  Created by Andrew Won on 11/03/2011 */
+
+html {
+    height: 100%
+}
+
+body {
+    margin-top: 20px;
+    min-height: 100%;
+    background-image: -moz-linear-gradient(#001122, #004586);
+    background-image: -webkit-linear-gradient(#001122, #004586);
+    height: 100%;
+}
+
+h1 {
+    text-align: center;
+    font-family: sans-serif;
+}
+
+div > p {
+    font-family: sans-serif;
+    text-align: center;
+    vertical-align: middle;
+    line-height:90%;
+}
+
+.main {
+    box-shadow: 0px 2px 8px gray inset;
+    margin: 1em auto;
+    background-color: white;
+    border-radius: 10px;
+    padding: 24px;
+    width: 75%;
+}
+
+#main, #main > div {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#text-area {
+    background-color: white;
+    font-family: serif;
+    font-size: small;
+    border: none;
+    position: absolute;
+    top: 200px;
+    left: 25px;
+    height: 100%;
+    width: 140px;
+}
+
+#posting {
+    width: 70%;
+}
+
+#postLabel {
+    vertical-align: top;
+}
+
+#verifyArea > span {
+    text-align: center;
+}
+
+.requirement {
+    color: red;
+}
+
+.approval {
+    color: green;
+}
+
+.post {
+    word-wrap: break-word;
+    font-family: sans-serif;
+    margin-top: 20px;
+    padding: 5px;
+    border-style: solid;
+    border-color: gray;
+    border-width: 1px;
+}
+

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+
+<!--
+   - poster.html is a sample text poster that validates user input, provides
+   - feedback to users and posts text to an in-page wall.
+   -
+   - Copyright (c) 2011 by Andrew Won <andyjwon@gmail.com>
+   - Computer Science Undergraduate, Class of 2013
+   - Loyola Marymount University
+   -->
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>Social Network Poster</title>
+    <link rel="stylesheet" href="poster.css" type="text/css" />
+</head>
+
+<body>
+<div class="main">
+    <h1>Social Network Poster</h1>
+    <span>
+        <label for="posting">Enter text:</label>
+        <textarea id="posting" rows="3" cols="50"> </textarea>
+    </span>
+    <div id="verifyArea">
+        <span>Text Entered: </span>
+        <span class="requirement" id="notify">
+            0
+        </span>
+    </div>
+    <div>
+        <button id="clear" disabled="disabled">Clear</button>
+        <button id="submit" disabled="disabled">Submit</button>
+    </div>
+
+    <div id="postField"> </div>
+</div>
+
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script src="poster.js"></script>
+</body>
+</html>
