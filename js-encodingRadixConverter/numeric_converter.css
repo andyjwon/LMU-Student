@@ -1,0 +1,36 @@
+button {
+    min-width: 120px;
+    font-size: large;
+}
+
+h2 {
+    margin-bottom: 2px;
+    background: blue;
+    text-align: center;
+    color: white;
+    width: 800px;
+}
+
+.table {
+    display: table;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.table > div {
+    display: table-row;
+}
+
+.table > div > span {
+    display: table-cell;
+    border:outset;
+}
+
+.output {
+    min-width: 150px;
+    text-align: center;
+}
+
+#conversionOutput {
+    height: 20px;
+}

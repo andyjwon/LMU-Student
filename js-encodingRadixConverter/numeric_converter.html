@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<!--
+   - numeric_converter.html provides decimal, hexadecimal,
+   - and binary conversions and arithmetic functions. Also
+   - included is a byte converter that converts to kibi,
+   - mebi, gibi, etc. bytes.
+   -
+   - Copyright (c) 2012 by Andrew Won <andyjwon@gmail.com>
+   - Computer Science Undergraduate, Class of 2013
+   - Loyola Marymount University
+   -->
+<html>
+    <head>
+        <meta charset="UTF-8"/>
+        <title>Numeric Converter &amp; Calculator</title>
+        <link rel="stylesheet" href="numeric_converter.css" />
+    </head>
+    <body>
+        <!-- Javascript libraries used in-line with
+             HTML and in supporting files -->
+        <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+        <script src="./libraries/biginteger.js"></script>
+
+        <div>
+            <h2>Number Conversion</h2>
+            System Bits:
+            <label for="four"> 4: </label>
+            <input type="radio" checked name="bitSelect" value="4" id="four" />
+            <label for="eight"> 8: </label>
+            <input type="radio" name="bitSelect" value="8" id="eight" />
+            <label for="sixteen"> 16: </label>
+            <input type="radio" name="bitSelect" value="16" id="sixteen" />
+            <label for="thirtytwo"> 32: </label>
+            <input type="radio" name="bitSelect" value="32" id="thirtytwo" />
+            <label for="sixtyfour"> 64: </label>
+            <input type="radio" name="bitSelect" value="64" id="sixtyfour" />
+        </div>
+
+        <div class="table" id="conversionTable">
+            <div>
+                <span><label for="udec">Unsigned Decimal: </label></span>
+                <span><label for="sdec">Signed Decimal: </label></span>
+                <span><label for="hex">Hexadecimal: </label></span>
+                <span><label for="bin">Binary: </label></span>
+            </div>
+            <div>
+                <!-- "pattern" attribute seems experimental in HTML5,
+                     used here as an example of how it might be implemented. -->
+                <span><input type="text" id="udec" pattern="[\d]" /></span>
+                <span><input type="text" id="sdec" pattern="[\d]" /></span>
+                <span><input type="text" id="hex" pattern="[\dA-Fa-f]" /></span>
+                <span><input type="text" id="bin" pattern="[0-1]" /></span>
+            </div>
+        </div>
+        <div class="output" id="conversionOutput"> </div>
+
+        <h2>Hexadecimal Adder:</h2>
+        <div class="table">
+            <div>
+                <span>
+                    <label for="addHex">Hexadecimal: </label>
+                    <input type="radio" checked name="addRadix"
+                    value=16 id="addHex" /><br />
+                    <label for="addDec">Decimal: </label>
+                    <input type="radio" name="addRadix"
+                    value=10 id="addDec" /><br />
+                    <label for="addBin">Binary: </label>
+                    <input type="radio" name="addRadix"
+                    value=2 id="addBin" />
+                </span>
+                <span>
+                    <label for="addUnsigned">Unsigned: </label>
+                    <input type="radio" checked name="addType"
+                    value="unsigned" id="addUnsigned" /><br />
+                    <label for="addModular">Modular: </label>
+                    <input type="radio" name="addType"
+                    value="modular" id="addModular" /><br />
+                    <label for="addSaturated">Saturated: </label>
+                    <input type="radio" name="addType"
+                    value="saturated" id="addSaturated" />
+                </span>
+                <span>
+                    <input type="text" id="hexAdd1" pattern="[\dA-Fa-f]" /><br/>
+                    + <input type="text" id="hexAdd2" pattern="[\dA-Fa-f]" />
+                </span>
+                <span>
+                    <span class="output" id="hexAddOutput"> </span>
+                </span>
+            </div>
+        </div>
+
+        <h2>Hexadecimal Subtractor:</h2>
+        <div class="table">
+            <div>
+                <span>
+                    <label for="subtractHex">Hexadecimal: </label>
+                    <input type="radio" checked name="subtractRadix"
+                    value="16" id="subtractHex" /><br />
+                    <label for="subtractDec">Decimal: </label>
+                    <input type="radio" name="subtractRadix"
+                    value="10" id="subtractDec" /><br />
+                    <label for="subtractBin">Binary: </label>
+                    <input type="radio" name="subtractRadix"
+                    value="2" id="subtractBin" />
+                </span>
+                <span>
+                    <label for="subUnsigned">Unsigned: </label>
+                    <input type="radio" checked name="subtractType"
+                    value="unsigned" id="subUnsigned" /><br />
+                    <label for="subSigned">Signed: </label>
+                    <input type="radio" name="subtractType"
+                    value="signed" id="subSigned" /><br />
+                </span>
+                <span>
+                    <input type="text" id="hexSubtract1" pattern="[\dA-Fa-f]" />
+                    <br />
+                    - <input type="text" id="hexSubtract2" pattern="[\dA-Fa-f]"/>
+                </span>
+                <span>
+                    <span class="output" id="hexSubtractOutput"> </span>
+                </span>
+            </div>
+        </div>
+
+        <h2>Bytes Converter</h2>
+        <div class="table">
+            <div>
+                <span>
+                    Tens<br />
+                    <select name="tensBytes" id="tensBytes">
+                        <script type="text/javascript">
+                            $(function () {
+                                var bigTen = BigInteger("10"),
+                                    bigInt,
+                                    tenByteNames = ["", "Kilo", "Mega",
+                                                    "Giga", "Tera", "Peta",
+                                                    "Exa", "Zetta", "Yotta",
+                                                    "Xona", "Weka", "Vunda",
+                                                    "Uda"];
+
+                                for (var i = 0; i < tenByteNames.length; i += 1) {
+                                    bigInt = bigTen.pow(i * 3);
+
+                                    $("#tensBytes")
+                                        .append("<option value=\"" +
+                                                bigInt.toString() + "\">" +
+                                                tenByteNames[i] + "bytes (10^" +
+                                                i * 3 + ")</option>");
+                                };
+                           });
+                        </script>
+                    </select>
+                </span>
+                <span>
+                    <input id="tensByteInput" pattern="[\d]" /><br />
+                    2^<input id="tensTwoPowerByteInput" pattern="[\d]" />
+                </span>
+                <span>
+                    <span class="output" id="bytesOutput"> </span>
+                </span>
+            </div>
+            <div>
+                <span>
+                    Twos<br />
+                    <select id="twosBytes">
+                        <script type="text/javascript">
+                            $(function () {
+                                var bigTwo = BigInteger("2"),
+                                    bigInt,
+                                    twoByteNames = ["Kibi", "Mebi", "Gibi",
+                                                    "Tebi", "Pebi", "Exbi",
+                                                    "Zebi", "Yobi", "Xobi",
+                                                    "Webi", "Vubi", "Udbi"];
+
+                                for (var i = 0; i < twoByteNames.length; i += 1) {
+                                    bigInt = bigTwo.pow((i + 1) * 10);
+
+                                    $("#twosBytes")
+                                        .append("<option value=\"" +
+                                                bigInt.toString() + "\">" +
+                                                twoByteNames[i] + "bytes (2^" +
+                                                (i + 1) * 10 + ")</option>");
+                                };
+                           });
+                        </script>
+                    </select>
+                </span>
+                <span>
+                    <input id="twosByteInput" pattern="[\d]" />
+                </span>
+            </div>
+        </div>
+
+        <h2>IEEE 754 Decoder</h2>
+        <div class="table">
+            <div>
+                <span>Hexadecimal</span>
+                <span><input id="hex754" type="text" size="24" maxlength="16" />
+                </span>
+            </div>
+            <div>
+                <span>Binary</span>
+                <span id="sign"></span>
+                <span id="exp"></span>
+                <span id="mantissa"></span>
+            </div>
+            <div>
+                <span>Exact Value</span>
+                <span id="description"></span>
+            </div>
+            <div>
+                <span>Printed Decimal Value<br />(may be approximate)</span>
+                <span id="decimal"></span>
+            </div>
+        </div>
+
+        <h2>IEEE 754 Encoder</h2>
+        <div class="table">
+            <div>
+                <span>Decimal Value</span>
+                <span><input id="dec" type="text" size="24" maxlength="160" />
+                </span>
+            </div>
+            <div>
+                <span>Formula Direct Input (Use Math.pow(x, y) for exponents)
+                </span>
+                <span><input id="formulaInput" type="text" size="24"
+                    maxlength="160" /></span>
+            </div>
+            <div>
+                <span>32-bit Hex</span>
+                <span id="32hex"> </span>
+            </div>
+            <div>
+                <span>64-bit Hex</span>
+                <span id="64hex"> </span>
+            </div>
+            <div>
+                <span>Printed Decimal Value<br />(may be approximate)</span>
+                <span id="printed"> </span>
+            </div>
+        </div>
+
+        <h2>UTF Encodings</h2>
+        <div class="table">
+            <div>
+                <span> </span>
+                <span>UTF-32</span>
+                <span>UTF-16</span>
+                <span>UTF-8</span>
+            </div>
+            <div>
+                <span>Hexadecimal: </span>
+                <span><input id="utf32Hex" type="text" size="10"
+                    maxlength="10" /></span>
+                <span><input id="utf16Hex" type="text" size="10"
+                    maxlength="10" /></span>
+                <span><input id="utf8Hex" type="text" size="10"
+                    maxlength="10" /></span>
+            </div>
+            <div>
+                <span>Binary: </span>
+                <span><input id="utf32Bin" type="text" size="30"
+                    maxlength="32" /></span>
+                <span><input id="utf16Bin" type="text" size="30"
+                    maxlength="32" /></span>
+                <span><input id="utf8Bin" type="text" size="30"
+                    maxlength="32" /></span>
+            </div>
+            <div>
+                <span> </span>
+                <span id="utfOutput32"> </span>
+                <span id="utfOutput16"> </span>
+                <span id="utfOutput8"> </span>
+            </div>
+        </div>
+
+        <script src="numeric_converter.js"></script>
+        <!-- The following script was written by Dr. Ray Toal of
+             Loyola Marymount University and only slightly edited
+             by myself. -->
+        <script src="./libraries/toalIeee754.js"></script>
+    </body>
+</html>
