@@ -29,7 +29,7 @@ $(function () {
             $("#conversionError").hide();
             $("#adderError").html('');
             $("#adderError").hide();
-
+            $("#hexAddOutput").html('');
             $("#hexSubtractOutput").html('');
             $("#bytesOutput").html('');
             $("#utfOutput32").html('');
