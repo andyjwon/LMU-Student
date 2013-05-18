@@ -14,8 +14,18 @@
         <meta charset="UTF-8"/>
         <meta name="description" content="IEEE754 and hex calculator and converter for various number systems, numeric and character encoding, UTF and bytes. Developed for Loyola Marymount (LMU).">
         <title>Numeric Converter &amp; Calculator</title>
-<!--        <link rel="stylesheet" href="numeric_converter.css" /> -->
         <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/css/bootstrap-combined.min.css">
+        <style type="text/css">
+            .left-border {
+                padding-left: 19px;
+                border-left: 1px solid #eee;
+            }
+
+            .right-border {
+                padding-right: 19px;
+                border-right: 1px solid #eee;
+            }
+        </style>
     </head>
     <body>
         <!-- JavaScript libraries used in-line with
@@ -80,34 +90,32 @@
                     </div>
                     <div id="adder" class="accordion-body collapse in">
                         <div class="accordion-inner">
-                            <div class="table">
-                                <div>
-                                    <span>
-                                        <label for="addHex">Hexadecimal: </label>
-                                        <input type="radio" checked name="addRadix"
-                                        value=16 id="addHex" /><br />
-                                        <label for="addDec">Decimal: </label>
-                                        <input type="radio" name="addRadix"
-                                        value=10 id="addDec" /><br />
-                                        <label for="addBin">Binary: </label>
-                                        <input type="radio" name="addRadix"
-                                        value=2 id="addBin" />
-                                    </span>
-                                    <span>
-                                        <label for="addUnsigned">Unsigned: </label>
-                                        <input type="radio" checked name="addType"
-                                        value="unsigned" id="addUnsigned" /><br />
-                                        <label for="addModular">Modular: </label>
-                                        <input type="radio" name="addType"
-                                        value="modular" id="addModular" /><br />
-                                        <label for="addSaturated">Saturated: </label>
-                                        <input type="radio" name="addType"
-                                        value="saturated" id="addSaturated" />
-                                    </span>
-                                    <span>
+                            <div class="row-fluid">
+                                <div class="span2 right-border">
+                                    <label for="addHex">Hexadecimal: </label>
+                                    <input type="radio" class="text-center" checked name="addRadix"
+                                    value=16 id="addHex" />
+                                    <label for="addDec">Decimal: </label>
+                                    <input type="radio" name="addRadix"
+                                    value=10 id="addDec" />
+                                    <label for="addBin">Binary: </label>
+                                    <input type="radio" name="addRadix"
+                                    value=2 id="addBin" />
+                                </div>
+                                <div class="span2 right-border">
+                                    <label for="addUnsigned">Unsigned: </label>
+                                    <input type="radio" checked name="addType"
+                                    value="unsigned" id="addUnsigned" /><br />
+                                    <label for="addModular">Modular: </label>
+                                    <input type="radio" name="addType"
+                                    value="modular" id="addModular" /><br />
+                                    <label for="addSaturated">Saturated: </label>
+                                    <input type="radio" name="addType"
+                                    value="saturated" id="addSaturated" />
+                                </div>
+                                <div class="span4">
                                         <input type="text" id="hexAdd1" pattern="[\dA-Fa-f]" /><br/>
                                         + <input type="text" id="hexAdd2" pattern="[\dA-Fa-f]" />
-                                    </span>
                                     <span>
                                         <span class="output" id="hexAddOutput"> </span>
                                     </span>
@@ -125,36 +133,34 @@
                     </div>
                     <div id="subtractor" class="accordion-body collapse in">
                         <div class="accordion-inner">
-                            <div class="table">
-                                <div>
-                                    <span>
-                                        <label for="subtractHex">Hexadecimal: </label>
-                                        <input type="radio" checked name="subtractRadix"
-                                        value="16" id="subtractHex" /><br />
-                                        <label for="subtractDec">Decimal: </label>
-                                        <input type="radio" name="subtractRadix"
-                                        value="10" id="subtractDec" /><br />
-                                        <label for="subtractBin">Binary: </label>
-                                        <input type="radio" name="subtractRadix"
-                                        value="2" id="subtractBin" />
-                                    </span>
-                                    <span>
-                                        <label for="subUnsigned">Unsigned: </label>
-                                        <input type="radio" checked name="subtractType"
-                                        value="unsigned" id="subUnsigned" /><br />
-                                        <label for="subSigned">Signed: </label>
-                                        <input type="radio" name="subtractType"
-                                        value="signed" id="subSigned" /><br />
-                                    </span>
-                                    <span>
-                                        <input type="text" id="hexSubtract1" pattern="[\dA-Fa-f]" />
-                                        <br />
-                                        - <input type="text" id="hexSubtract2" pattern="[\dA-Fa-f]"/>
-                                    </span>
+                            <div class="row-fluid">
+                                <div class="span2 right-border">
+                                    <label for="subtractHex">Hexadecimal: </label>
+                                    <input type="radio" checked name="subtractRadix"
+                                    value="16" id="subtractHex" /><br />
+                                    <label for="subtractDec">Decimal: </label>
+                                    <input type="radio" name="subtractRadix"
+                                    value="10" id="subtractDec" /><br />
+                                    <label for="subtractBin">Binary: </label>
+                                    <input type="radio" name="subtractRadix"
+                                    value="2" id="subtractBin" />
+                                </div>
+                                <div class="span2 right-border">
+                                    <label for="subUnsigned">Unsigned: </label>
+                                    <input type="radio" checked name="subtractType"
+                                    value="unsigned" id="subUnsigned" /><br />
+                                    <label for="subSigned">Signed: </label>
+                                    <input type="radio" name="subtractType"
+                                    value="signed" id="subSigned" /><br />
+                                </div>
+                                <div class="span4">
+                                    <input type="text" id="hexSubtract1" pattern="[\dA-Fa-f]" />
+                                    <br />
+                                    - <input type="text" id="hexSubtract2" pattern="[\dA-Fa-f]"/>
+                                </div>
                                     <span>
                                         <span class="output" id="hexSubtractOutput"> </span>
                                     </span>
-                                </div>
                             </div>
                         </div>
                     </div>
@@ -168,72 +174,62 @@
                     </div>
                     <div id="bytesConverter" class="accordion-body collapse in">
                         <div class="accordion-inner">
-                            <div class="table">
-                                <div>
-                                    <span>
-                                        Tens<br />
-                                        <select name="tensBytes" id="tensBytes">
-                                            <script type="text/javascript">
-                                                $(function () {
-                                                    var bigTen = BigInteger("10"),
-                                                        bigInt,
-                                                        tenByteNames = ["", "Kilo", "Mega",
-                                                                        "Giga", "Tera", "Peta",
-                                                                        "Exa", "Zetta", "Yotta",
-                                                                        "Xona", "Weka", "Vunda",
-                                                                        "Uda"];
+                            <div class="row-fluid">
+                                <div class="span4">
+                                    Tens:
+                                    <select name="tensBytes" id="tensBytes">
+                                        <script type="text/javascript">
+                                            $(function () {
+                                                var bigTen = BigInteger("10"),
+                                                    bigInt,
+                                                    tenByteNames = ["", "Kilo", "Mega",
+                                                                    "Giga", "Tera", "Peta",
+                                                                    "Exa", "Zetta", "Yotta",
+                                                                    "Xona", "Weka", "Vunda",
+                                                                    "Uda"];
 
-                                                    for (var i = 0; i < tenByteNames.length; i += 1) {
-                                                        bigInt = bigTen.pow(i * 3);
+                                                for (var i = 0; i < tenByteNames.length; i += 1) {
+                                                    bigInt = bigTen.pow(i * 3);
 
-                                                        $("#tensBytes")
-                                                            .append("<option value=\"" +
-                                                                    bigInt.toString() + "\">" +
-                                                                    tenByteNames[i] + "bytes (10^" +
-                                                                    i * 3 + ")</option>");
-                                                    };
-                                               });
-                                            </script>
-                                        </select>
-                                    </span>
-                                    <span>
-                                        <input id="tensByteInput" pattern="[\d]" /><br />
-                                        2^<input id="tensTwoPowerByteInput" pattern="[\d]" />
-                                    </span>
-                                    <span>
-                                        <span class="output" id="bytesOutput"> </span>
-                                    </span>
+                                                    $("#tensBytes")
+                                                        .append("<option value=\"" +
+                                                                bigInt.toString() + "\">" +
+                                                                tenByteNames[i] + "bytes (10^" +
+                                                                i * 3 + ")</option>");
+                                                };
+                                           });
+                                        </script>
+                                    </select>
+                                    <br />Twos:
+                                    <select id="twosBytes">
+                                        <script type="text/javascript">
+                                            $(function () {
+                                                var bigTwo = BigInteger("2"),
+                                                    bigInt,
+                                                    twoByteNames = ["Kibi", "Mebi", "Gibi",
+                                                                    "Tebi", "Pebi", "Exbi",
+                                                                    "Zebi", "Yobi", "Xobi",
+                                                                    "Webi", "Vubi", "Udbi"];
+
+                                                for (var i = 0; i < twoByteNames.length; i += 1) {
+                                                    bigInt = bigTwo.pow((i + 1) * 10);
+
+                                                    $("#twosBytes")
+                                                        .append("<option value=\"" +
+                                                                bigInt.toString() + "\">" +
+                                                                twoByteNames[i] + "bytes (2^" +
+                                                                (i + 1) * 10 + ")</option>");
+                                                };
+                                           });
+                                        </script>
+                                    </select>
                                 </div>
-                                <div>
-                                    <span>
-                                        Twos<br />
-                                        <select id="twosBytes">
-                                            <script type="text/javascript">
-                                                $(function () {
-                                                    var bigTwo = BigInteger("2"),
-                                                        bigInt,
-                                                        twoByteNames = ["Kibi", "Mebi", "Gibi",
-                                                                        "Tebi", "Pebi", "Exbi",
-                                                                        "Zebi", "Yobi", "Xobi",
-                                                                        "Webi", "Vubi", "Udbi"];
-
-                                                    for (var i = 0; i < twoByteNames.length; i += 1) {
-                                                        bigInt = bigTwo.pow((i + 1) * 10);
-
-                                                        $("#twosBytes")
-                                                            .append("<option value=\"" +
-                                                                    bigInt.toString() + "\">" +
-                                                                    twoByteNames[i] + "bytes (2^" +
-                                                                    (i + 1) * 10 + ")</option>");
-                                                    };
-                                               });
-                                            </script>
-                                        </select>
-                                    </span>
-                                    <span>
-                                        <input id="twosByteInput" pattern="[\d]" />
-                                    </span>
+                                <div class="span4">
+                                    <input id="tensByteInput" pattern="[\d]" /><br />
+                                    2^<input id="tensTwoPowerByteInput" pattern="[\d]" />
+                                    <input id="twosByteInput" pattern="[\d]" />
                                 </div>
+                                <span class="output" id="bytesOutput"> </span>
                             </div>
                         </div>
                     </div>
@@ -317,30 +313,45 @@
                     </div>
                     <div id="utf" class="accordion-body collapse in">
                         <div class="accordion-inner">
-                            <div class="table">
-                                <div>
-                                    <span> </span>
-                                    <span>UTF-32</span>
-                                    <span>UTF-16</span>
-                                    <span>UTF-8</span>
+                            <div class="row-fluid">
+                                <div class="span3">
                                 </div>
-                                <div>
-                                    <span>Hexadecimal: </span>
-                                    <span><input id="utf32Hex" type="text" size="10"
-                                        maxlength="10" /></span>
-                                    <span><input id="utf16Hex" type="text" size="10"
-                                        maxlength="10" /></span>
-                                    <span><input id="utf8Hex" type="text" size="10"
-                                        maxlength="10" /></span>
+                                <div class="span3">
+                                    UTF-32
                                 </div>
-                                <div>
-                                    <span>Binary: </span>
-                                    <span><input id="utf32Bin" type="text" size="30"
-                                        maxlength="32" /></span>
-                                    <span><input id="utf16Bin" type="text" size="30"
-                                        maxlength="32" /></span>
-                                    <span><input id="utf8Bin" type="text" size="30"
-                                        maxlength="32" /></span>
+                                <div class="span3">
+                                    UTF-16
+                                </div>
+                                <div class="span3">
+                                    UTF-8
+                                </div>
+                            </div>
+                            <div class="row-fluid">
+                                <div class="span3">
+                                    Hexadecimal:
+                                </div>
+                                <div class="span3">
+                                    <input id="utf32Hex" type="text" size="10" maxlength="10" />
+                                </div>
+                                <div class="span3">
+                                    <input id="utf16Hex" type="text" size="10" maxlength="10" />
+                                </div>
+                                <div class="span3">
+                                    <input id="utf8Hex" type="text" size="10" maxlength="10" />
+                                </div>
+                            </div>
+                            <div class="row-fluid">
+                                <div class="span3">
+                                    Binary:
+                                </div>
+                                <div class="span3">
+                                    <input id="utf32Bin" type="text" size="30" maxlength="32" />
+                                </div>
+                                <div class="span3">
+                                    <input id="utf16Bin" type="text" size="30" maxlength="32" />
+                                </div>
+                                <div class="span3">
+                                    <input id="utf8Bin" type="text" size="30" maxlength="32" />
                                 </div>
                                 <div>
                                     <span> </span>
