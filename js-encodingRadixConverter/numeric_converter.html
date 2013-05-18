@@ -276,8 +276,8 @@
                                 <div class="span4">
                                     <input class="span10" id="twosByteInput" pattern="[\d]" />
                                 </div>
-                                <span class="output" id="bytesOutput"> </span>
                             </div>
+                            <div class="alert hide" id="bytesError"> </div>
                         </div>
                     </div>
                 </div>
@@ -394,7 +394,7 @@
                                     Binary:
                                 </div>
                                 <div class="span3">
-                                    <input id="utf32Bin" type="text" size="30" maxlength="32" />
+                                    <input id="utf32Bin" type="text" size="30" maxlength="32" pattern="[0-1]" />
                                 </div>
                                 <div class="span3">
                                     <input id="utf16Bin" type="text" size="30" maxlength="32" />
@@ -402,13 +402,8 @@
                                 <div class="span3">
                                     <input id="utf8Bin" type="text" size="30" maxlength="32" />
                                 </div>
-                                <div>
-                                    <span> </span>
-                                    <span id="utfOutput32"> </span>
-                                    <span id="utfOutput16"> </span>
-                                    <span id="utfOutput8"> </span>
-                                </div>
                             </div>
+                            <div class="alert hide" id="utfError"> </div>
                         </div>
                     </div>
                 </div>

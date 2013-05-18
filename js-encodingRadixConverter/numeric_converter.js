@@ -31,12 +31,13 @@ $(function () {
             $("#adderError").hide();
             $("#subtractorError").html('');
             $("#subtractorError").hide();
+            $("#utfError").html('');
+            $("#utfError").hide();
+            $("#bytesError").html('');
+            $("#bytesError").hide();
+
             $("#hexAddOutput").html('');
             $("#hexSubtractOutput").html('');
-            $("#bytesOutput").html('');
-            $("#utfOutput32").html('');
-            $("#utfOutput16").html('');
-            $("#utfOutput8").html('');
         },
 
         /*
@@ -209,33 +210,30 @@ $(function () {
         validateUtfInput = function (val) {
             clearOutput();
             if (isNaN(val)) {
-                $("#utfOutput32")
+                $("#utfError")
                     .append(UNRECOGNIZED_INPUT);
-                $("#utfOutput16")
-                    .append(UNRECOGNIZED_INPUT);
-                $("#utfOutput8")
-                    .append(UNRECOGNIZED_INPUT);
+                $('#utfError').show();
                 return 0;
             }
             return 1;
         },
 
-        updateUtf32to16 = function (bin) {
+        updateUtf32to16 = function (dec) {
             var tempString,
                 buildString = "110110";
-            if (bin < 65536) {
+            if (dec < 65536) {
                 // If <= FFFF
-                tempString = bin.toString(2);
+                tempString = dec.toString(2);
                 while (tempString.length < 16) {
                     tempString = "0".concat(tempString);
                 }
                 $("#utf16Hex")
                     .val(parseInt(tempString, 2).toString(16).toUpperCase());
                 $("#utf16Bin").val(tempString);
-            } else if (bin < 1114112) {
-                bin -= 65536;
+            } else if (dec < 1114112) {
+                dec -= 65536;
                 // If <= 10FFFF
-                tempString = bin.toString(2);
+                tempString = dec.toString(2);
                 while (tempString.length < 20) {
                     tempString = "0".concat(tempString);
                 }
@@ -246,17 +244,17 @@ $(function () {
                     .val(parseInt(buildString, 2).toString(16).toUpperCase());
                 $("#utf16Bin").val(buildString);
             } else {
-                clearOutput();
-                $("#utfOutput16")
+                $("#utfError")
                     .append(NUMBER_OUT_OF_RANGE.format(["UTF-16"], ["encoding"]));
+                $('#utfError').show();
             }
         },
 
-        updateUtf32to8 = function (bin) {
-            var tempString = bin.toString(2),
+        updateUtf32to8 = function (dec) {
+            var tempString = dec.toString(2),
                 buildString = "";
 
-            if (bin < 128) {
+            if (dec < 128) {
                 // If <= 7F
                 while (tempString.length < 7) {
                     tempString = "0".concat(tempString);
@@ -264,7 +262,7 @@ $(function () {
                 $("#utf8Hex").val(parseInt(tempString, 2).toString(16)
                     .toUpperCase());
                 $("#utf8Bin").val(tempString);
-            } else if (bin < 2048) {
+            } else if (dec < 2048) {
                 // If <= 07FF
                 while (tempString.length < 11) {
                     tempString = "0".concat(tempString);
@@ -276,7 +274,7 @@ $(function () {
                 $("#utf8Hex").val(parseInt(buildString, 2).toString(16)
                     .toUpperCase());
                 $("#utf8Bin").val(buildString);
-            } else if (bin < 65536) {
+            } else if (dec < 65536) {
                 // If <= FFFF
                 while (tempString.length < 16) {
                     tempString = "0".concat(tempString);
@@ -290,7 +288,7 @@ $(function () {
                 $("#utf8Hex").val(parseInt(buildString, 2).toString(16)
                     .toUpperCase());
                 $("#utf8Bin").val(buildString);
-            } else if (bin < 2097152) {
+            } else if (dec < 2097152) {
                 // If <= 1FFFFF
                 while (tempString.length < 21) {
                     tempString = "0".concat(tempString);
@@ -306,7 +304,7 @@ $(function () {
                 $("#utf8Hex").val(parseInt(buildString, 2).toString(16)
                     .toUpperCase());
                 $("#utf8Bin").val(buildString);
-            } else if (bin < 67108864) {
+            } else if (dec < 67108864) {
                 // If <= 3FFFFFF
                 while (tempString.length < 26) {
                     tempString = "0".concat(tempString);
@@ -324,7 +322,7 @@ $(function () {
                 $("#utf8Hex").val(parseInt(buildString, 2).toString(16)
                     .toUpperCase());
                 $("#utf8Bin").val(buildString);
-            } else if (bin < 2147483648) {
+            } else if (dec < 2147483648) {
                 // If <= 7FFFFFFF
                 while (tempString.length < 31) {
                     tempString = "0".concat(tempString);
@@ -345,9 +343,9 @@ $(function () {
                     .toUpperCase());
                 $("#utf8Bin").val(buildString);
             } else {
-                clearOutput();
-                $("#utfOutput8")
+                $("#utfError")
                     .append(NUMBER_OUT_OF_RANGE.format(["UTF-8"], ["encoding"]));
+                $('#utfError').show();
             }
         },
 
@@ -372,9 +370,9 @@ $(function () {
                 $("#utf32Hex").val(hex32.toString(16).toUpperCase());
                 updateUtf32to8(parseInt(bin32String, 2));
             } else {
-                clearOutput();
-                $("#utfOutput16")
+                $("#utfError")
                     .append(INVALID_UTF.format(["UTF-16"]));
+                $('#utfError').show();
             }
         },
 
@@ -453,8 +451,9 @@ $(function () {
                     .toUpperCase());
                 updateUtf32to16(parseInt(bin32String, 2));
             } else {
-                clearOutput();
-                $("#utfOutput8").append(INVALID_UTF.format(["UTF-8"]));
+                $("#utfError")
+                    .append(INVALID_UTF.format(["UTF-8"]));
+                $('#utfError').show();
             }
         };
 
@@ -589,8 +588,9 @@ $(function () {
             power = parseInt($("#tensTwoPowerByteInput").val(), 10);
         if (power) {
             if (isNaN(power)) {
-                $("#bytesOutput")
+                $("#bytesError")
                     .append(UNRECOGNIZED_INPUT);
+                $('#bytesError').show();
             } else {
                 tens = Math.pow(2, power);
                 tensUnits = parseInt($("#tensBytes").val(), 10);
@@ -607,8 +607,9 @@ $(function () {
         var tens = parseInt($("#tensByteInput").val(), 10);
         if (tens) {
             if (isNaN(tens)) {
-                $("#bytesOutput")
+                $("#bytesError")
                     .append(UNRECOGNIZED_INPUT);
+                $('#bytesError').show();
             } else {
                 $("#tensTwoPowerByteInput")
                     .val(Math.log(tens) / Math.log(2));
@@ -625,8 +626,9 @@ $(function () {
             tens;
         if (twos) {
             if (isNaN(twos)) {
-                $("#bytesOutput")
+                $("#bytesError")
                     .append(UNRECOGNIZED_INPUT);
+                $('#bytesError').show();
             } else {
                 tens = (twos * parseInt($("#twosBytes").val(), 10)) /
                     parseInt($("#tensBytes").val(), 10);
@@ -642,15 +644,16 @@ $(function () {
     $("#utf32Hex").on('input', function () {
         var hex32 = parseInt($("#utf32Hex").val(), 16);
         if (validateUtfInput(hex32)) {
-            updateUtf32to16(parseInt(hex32.toString(10), 10), 10);
-            updateUtf32to8(parseInt(hex32.toString(10), 10), 10);
+            updateUtf32to16(parseInt(hex32.toString(10), 10));
+            updateUtf32to8(parseInt(hex32.toString(10), 10));
             $("#utf32Bin").val(hex32.toString(2));
         }
     });
     $("#utf32Bin").on('input', function () {
         var bin32 = parseInt($("#utf32Bin").val(), 2);
         if (validateUtfInput(bin32)) {
-            updateUtf32to16(bin32, 32);
+            updateUtf32to16(parseInt(bin32.toString(10), 10));
+            updateUtf32to8(parseInt(bin32.toString(10), 10));
             $("#utf32Hex").val(bin32.toString(16).toUpperCase());
         }
     });
