@@ -25,6 +25,15 @@
             padding-right: 19px;
             border-right: 1px solid #eee;
           }
+
+          .bottom-border {
+            padding-bottom: 9px;
+            border-bottom: 1px solid #eee;
+          }
+
+          .pad-top {
+            padding-top: 9px;
+          }
         </style>
     </head>
     <body>
@@ -217,8 +226,10 @@
                     <div id="bytesConverter" class="accordion-body collapse in">
                         <div class="accordion-inner">
                             <div class="row-fluid">
-                                <div class="span4">
+                                <div class="span1">
                                     Tens:
+                                </div>
+                                <div class="span4">
                                     <select name="tensBytes" id="tensBytes">
                                         <script type="text/javascript">
                                             $(function() {
@@ -232,8 +243,22 @@
                                             });
                                         </script>
                                     </select>
-                                    <br />
+                                </div>
+                                <div class="span4">
+                                    <input class="span10" id="tensByteInput" pattern="[\d]" />
+                                </div>
+                            </div>
+                            <div class="row-fluid bottom-border">
+                                <div class="offset5 span4">
+                                    2^
+                                    <input class="span10" id="tensTwoPowerByteInput" pattern="[\d]" />
+                                </div>
+                            </div>
+                            <div class="row-fluid pad-top">
+                                <div class="span1">
                                     Twos:
+                                </div>
+                                <div class="span4">
                                     <select id="twosBytes">
                                         <script type="text/javascript">
                                             $(function() {
@@ -249,11 +274,7 @@
                                     </select>
                                 </div>
                                 <div class="span4">
-                                    <input id="tensByteInput" pattern="[\d]" />
-                                    <br />
-                                    2^
-                                    <input id="tensTwoPowerByteInput" pattern="[\d]" />
-                                    <input id="twosByteInput" pattern="[\d]" />
+                                    <input class="span10" id="twosByteInput" pattern="[\d]" />
                                 </div>
                                 <span class="output" id="bytesOutput"> </span>
                             </div>
@@ -267,29 +288,29 @@
                     </div>
                     <div id="ieee754decoder" class="accordion-body collapse in">
                         <div class="accordion-inner">
-                            <div class="table">
-                                <div>
-                                    <span>Hexadecimal</span>
-                                    <span>
-                                        <input id="hex754" type="text" size="24" maxlength="16" />
-                                    </span>
+                            <div class="row-fluid bottom-border">
+                                <div class="span2">Hexadecimal:</div>
+                                <div class="span10">
+                                    <input id="hex754" type="text" maxlength="16" />
                                 </div>
-                                <div>
-                                    <span>Binary</span>
+                            </div>
+                            <div class="row-fluid bottom-border pad-top">
+                                <div class="span2">Binary:</div>
+                                <div class="span10">
                                     <span id="sign"> </span>
                                     <span id="exp"> </span>
                                     <span id="mantissa"> </span>
                                 </div>
-                                <div>
-                                    <span>Exact Value</span>
-                                    <span id="description"> </span>
-                                </div>
-                                <div>
-                                    <span>Printed Decimal Value
-                                        <br />
-                                        (may be approximate)</span>
-                                    <span id="decimal"> </span>
-                                </div>
+                            </div>
+                            <div class="row-fluid bottom-border pad-top">
+                                <div class="span2">Exact Value:</div>
+                                <div class="span10" id="description"> </div>
+                            </div>
+                            <div class="row-fluid bottom-border pad-top">
+                                <div class="span2">Decimal Value:
+                                    <br />
+                                    (approximate)</div>
+                                <div class="span10" id="decimal"> </div>
                             </div>
                         </div>
                     </div>
@@ -301,34 +322,36 @@
                     </div>
                     <div id="ieee754encoder" class="accordion-body collapse in">
                         <div class="accordion-inner">
-                            <div class="table">
-                                <div>
-                                    <span>Decimal Value</span>
+                            <div class="row-fluid bottom-border">
+                                <div class="span2">Decimal Value:</div>
+                                <div class="span10">
                                     <span>
                                         <input id="dec" type="text" size="24" maxlength="160" />
                                     </span>
                                 </div>
-                                <div>
-                                    <span>Formula Direct Input (Use Math.pow(x, y) for exponents) </span>
-                                    <span>
-                                        <input id="formulaInput" type="text" size="24"
-                                        maxlength="160" />
-                                    </span>
+                            </div>
+                            <div class="row-fluid bottom-border pad-top">
+                                <div class="span2">
+                                    Formula Input:<br />
+                                    (Math.pow(x, y))
                                 </div>
-                                <div>
-                                    <span>32-bit Hex</span>
-                                    <span id="32hex"> </span>
+                                <div class="span10">
+                                    <input id="formulaInput" type="text" size="24" maxlength="160" />
                                 </div>
-                                <div>
-                                    <span>64-bit Hex</span>
-                                    <span id="64hex"> </span>
+                            </div>
+                            <div class="row-fluid bottom-border pad-top">
+                                <div class="span2">32-bit Hex:</div>
+                                <div class="span10" id="32hex"> </div>
+                            </div>
+                            <div class="row-fluid bottom-border pad-top">
+                                <div class="span2">64-bit Hex:</div>
+                                <div class="span10" id="64hex"> </div>
+                            </div>
+                            <div class="row-fluid bottom-border pad-top">
+                                <div class="span2">Decimal Value:<br />
+                                    (approximate)
                                 </div>
-                                <div>
-                                    <span>Printed Decimal Value
-                                        <br />
-                                        (may be approximate)</span>
-                                    <span id="printed"> </span>
-                                </div>
+                                <div class="span10" id="printed"> </div>
                             </div>
                         </div>
                     </div>
