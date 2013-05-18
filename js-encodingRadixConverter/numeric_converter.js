@@ -12,17 +12,24 @@
  * Loyola Marymount University
  */
 $(function () {
-    var lastConverted = "",
+    var WARNING = "<strong>Warning!</strong> ",
+        UNRECOGNIZED_INPUT = WARNING + "I can't recognize your number.",
+        NUMBER_OUT_OF_RANGE = WARNING + "Your value does not fit in a {0} {1}.",
+        INVALID_UTF = WARNING + "Your number does not represent a {0} encoding.",
+        MISSING_FIELD = WARNING + "Please fill in both fields.",
+
+        lastConverted = "",
         lastBytesEntered = "",
 
         /*
          * Clears all commentary fields on the page.
          */
         clearOutput = function () {
-            $("#conversionOutput").html('');
             $("#conversionError").html('');
             $("#conversionError").hide();
-            $("#hexAddOutput").html('');
+            $("#adderError").html('');
+            $("#adderError").hide();
+
             $("#hexSubtractOutput").html('');
             $("#bytesOutput").html('');
             $("#utfOutput32").html('');
@@ -94,13 +101,12 @@ $(function () {
             clearOutput();
 
             if (isNaN(newValue)) {
-                clearInputs();
-                $("#conversionOutput")
-                    .append("Sorry, but I can't recognize your number.");
+                $("#conversionError")
+                    .append(UNRECOGNIZED_INPUT);
+                $('#conversionError').show();
             } else if (newValue > maxNum - 1 || newValue < 0) {
                 $("#conversionError")
-                    .append("<strong>Warning!</strong> Sorry, but your value doesn't fit in a " +
-                            numBits + " bit system.");
+                    .append(NUMBER_OUT_OF_RANGE.format([numBits], ["bit system"]));
                 $('#conversionError').show();
             } else {
                 $("#udec").val(newValue.toString(10));
@@ -202,11 +208,11 @@ $(function () {
             clearOutput();
             if (isNaN(val)) {
                 $("#utfOutput32")
-                    .append("Sorry, but I can't recognize your numbers.");
+                    .append(UNRECOGNIZED_INPUT);
                 $("#utfOutput16")
-                    .append("Sorry, but I can't recognize your numbers.");
+                    .append(UNRECOGNIZED_INPUT);
                 $("#utfOutput8")
-                    .append("Sorry, but I can't recognize your numbers.");
+                    .append(UNRECOGNIZED_INPUT);
                 return 0;
             }
             return 1;
@@ -240,8 +246,7 @@ $(function () {
             } else {
                 clearOutput();
                 $("#utfOutput16")
-                    .append("Sorry, but your number does not fit in a UTF-16 " +
-                        "encoding.");
+                    .append(NUMBER_OUT_OF_RANGE.format(["UTF-16"], ["encoding"]));
             }
         },
 
@@ -340,7 +345,7 @@ $(function () {
             } else {
                 clearOutput();
                 $("#utfOutput8")
-                    .append("Sorry, but your number does not fit in a UTF-8 encoding.");
+                    .append(NUMBER_OUT_OF_RANGE.format(["UTF-8"], ["encoding"]));
             }
         },
 
@@ -367,8 +372,7 @@ $(function () {
             } else {
                 clearOutput();
                 $("#utfOutput16")
-                    .append("Sorry, but your number does not represent a " +
-                            "UTF-16 encoding.");
+                    .append(INVALID_UTF.format(["UTF-16"]));
             }
         },
 
@@ -448,20 +452,19 @@ $(function () {
                 updateUtf32to16(parseInt(bin32String, 2));
             } else {
                 clearOutput();
-                $("#utfOutput8").append("Sorry, but your number is not a " +
-                                       "UTF-8 encoding.");
+                $("#utfOutput8").append(INVALID_UTF.format(["UTF-8"]));
             }
         };
 
     /******************** Input Handler for Subtractor ***********************/
     $("input:radio[name=subtractRadix], input:radio[name=subtractType]")
-            .bind('change', function () {
+            .on('change', function () {
             $("#hexSubtract1").trigger('input');
         });
-    $("#hexSubtract2").bind('input', function () {
+    $("#hexSubtract2").on('input', function () {
         $("#hexSubtract1").trigger('input');
     });
-    $("#hexSubtract1").bind('input', function () {
+    $("#hexSubtract1").on('input', function () {
         var val1 = $("#hexSubtract1").val(),
             val2 = $("#hexSubtract2").val(),
             radix = $("input:radio[name=subtractRadix]:checked").val();
@@ -469,13 +472,13 @@ $(function () {
         clearOutput();
         if (!val1 || !val2) {
             $("#hexSubtractOutput")
-                .append("Sorry, but please fill in both fields.");
+                .append(MISSING_FIELD);
         } else {
             val1 = parseInt(val1, radix);
             val2 = parseInt(val2, radix);
             if (isNaN(val1) || isNaN(val2)) {
                 $("#hexSubtractOutput")
-                    .append("Sorry, but I can't recognize your numbers.");
+                    .append(UNRECOGNIZED_INPUT);
             } else if ($("input:radio[name=subtractType]:checked").val() ===
                     "unsigned") {
                 $("#hexSubtractOutput")
@@ -491,13 +494,13 @@ $(function () {
 
     /*********************** Input Handler for Adder *************************/
     $("input:radio[name=addRadix], input:radio[name=addType]")
-            .bind('change', function () {
+            .on('change', function () {
             $("#hexAdd1").trigger('input');
         });
-    $("#hexAdd2").bind('input', function () {
+    $("#hexAdd2").on('input', function () {
         $("#hexAdd1").trigger('input');
     });
-    $("#hexAdd1").bind('input', function () {
+    $("#hexAdd1").on('input', function () {
         var val1 = $("#hexAdd1").val(),
             val2 = $("#hexAdd2").val(),
             radix = $("input:radio[name=addRadix]:checked").val(),
@@ -505,14 +508,16 @@ $(function () {
 
         clearOutput();
         if (!val1 || !val2) {
-            $("#hexAddOutput")
-                .append("Sorry, but please fill in both fields.");
+            $("#adderError")
+                .append(MISSING_FIELD);
+            $('#adderError').show();
         } else {
             val1 = parseInt(val1, radix);
             val2 = parseInt(val2, radix);
             if (isNaN(val1) || isNaN(val2)) {
-                $("#hexAddOutput")
-                    .append("Sorry, but I can't recognize your numbers.");
+                $("#adderError")
+                    .append(UNRECOGNIZED_INPUT);
+                $('#adderError').show();
             } else {
                 result = adder(val1, val2, radix);
                 $("#hexAddOutput").append(result[0]);
@@ -571,7 +576,7 @@ $(function () {
             $("#" + lastBytesEntered).trigger('input');
         }
     });
-    $("#tensTwoPowerByteInput").bind('input', function () {
+    $("#tensTwoPowerByteInput").on('input', function () {
         clearOutput();
         lastBytesEntered = "tensTwoPowerByteInput";
         var tens,
@@ -581,7 +586,7 @@ $(function () {
         if (power) {
             if (isNaN(power)) {
                 $("#bytesOutput")
-                    .append("Sorry, but I can't recognize your numbers.");
+                    .append(UNRECOGNIZED_INPUT);
             } else {
                 tens = Math.pow(2, power);
                 tensUnits = parseInt($("#tensBytes").val(), 10);
@@ -599,7 +604,7 @@ $(function () {
         if (tens) {
             if (isNaN(tens)) {
                 $("#bytesOutput")
-                    .append("Sorry, but I can't recognize your numbers.");
+                    .append(UNRECOGNIZED_INPUT);
             } else {
                 $("#tensTwoPowerByteInput")
                     .val(Math.log(tens) / Math.log(2));
@@ -617,7 +622,7 @@ $(function () {
         if (twos) {
             if (isNaN(twos)) {
                 $("#bytesOutput")
-                    .append("Sorry, but I can't recognize your numbers.");
+                    .append(UNRECOGNIZED_INPUT);
             } else {
                 tens = (twos * parseInt($("#twosBytes").val(), 10)) /
                     parseInt($("#tensBytes").val(), 10);
@@ -674,4 +679,18 @@ $(function () {
         }
     });
     /***************** End Input Handlers for UTF Encodings ******************/
+
+    /**
+     * String format utility function
+     */
+    if (!String.prototype.format) {
+        String.prototype.format = function() {
+            var args = arguments;
+            return this.replace(/{(\d+)}/g, function(match, number) {
+                return typeof args[number] != 'undefined'
+                    ? args[number]
+                    : match;
+            });
+        };
+    }
 });
