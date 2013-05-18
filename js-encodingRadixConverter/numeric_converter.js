@@ -29,6 +29,8 @@ $(function () {
             $("#conversionError").hide();
             $("#adderError").html('');
             $("#adderError").hide();
+            $("#subtractorError").html('');
+            $("#subtractorError").hide();
             $("#hexAddOutput").html('');
             $("#hexSubtractOutput").html('');
             $("#bytesOutput").html('');
@@ -471,14 +473,16 @@ $(function () {
 
         clearOutput();
         if (!val1 || !val2) {
-            $("#hexSubtractOutput")
+            $("#subtractorError")
                 .append(MISSING_FIELD);
+            $('#subtractorError').show();
         } else {
             val1 = parseInt(val1, radix);
             val2 = parseInt(val2, radix);
             if (isNaN(val1) || isNaN(val2)) {
-                $("#hexSubtractOutput")
+                $("#subtractorError")
                     .append(UNRECOGNIZED_INPUT);
+                $('#subtractorError').show();
             } else if ($("input:radio[name=subtractType]:checked").val() ===
                     "unsigned") {
                 $("#hexSubtractOutput")

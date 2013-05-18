@@ -117,7 +117,6 @@
                                 <div class="span4">
                                     <div class="input-prepend">
                                         <span class="add-on">+</span>
-                                        +
                                         <input class="span8" type="text" id="hexAdd2" pattern="[\dA-Fa-f]" />
                                     </div>
                                 </div>
@@ -137,7 +136,9 @@
                                 </div>
                                 <div class="span4">
                                     <div class="offset1 span8">
-                                        <strong><span class="output" id="hexAddOutput"> </span></strong>
+                                        <strong>
+                                            <span class="output" id="hexAddOutput"> </span>
+                                        </strong>
                                     </div>
                                 </div>
                             </div>
@@ -153,37 +154,58 @@
                     <div id="subtractor" class="accordion-body collapse in">
                         <div class="accordion-inner">
                             <div class="row-fluid">
-                                <div class="span2 right-border">
-                                    <label for="subtractHex">Hexadecimal: </label>
-                                    <input type="radio" checked name="subtractRadix"
-                                    value="16" id="subtractHex" />
-                                    <br />
-                                    <label for="subtractDec">Decimal: </label>
-                                    <input type="radio" name="subtractRadix"
-                                    value="10" id="subtractDec" />
-                                    <br />
-                                    <label for="subtractBin">Binary: </label>
-                                    <input type="radio" name="subtractRadix"
-                                    value="2" id="subtractBin" />
+                                <div class="span1">
+                                    <label for="subtractHex">Hex: </label>
                                 </div>
-                                <div class="span2 right-border">
+                                <div class="span1 right-border">
+                                    <input type="radio" checked name="subtractRadix" value="16" id="subtractHex" />
+                                </div>
+                                <div class="span1">
                                     <label for="subUnsigned">Unsigned: </label>
-                                    <input type="radio" checked name="subtractType"
-                                    value="unsigned" id="subUnsigned" />
-                                    <br />
-                                    <label for="subSigned">Signed: </label>
-                                    <input type="radio" name="subtractType"
-                                    value="signed" id="subSigned" />
-                                    <br />
+                                </div>
+                                <div class="span1 right-border">
+                                    <input type="radio" checked name="subtractType" value="unsigned" id="subUnsigned" />
                                 </div>
                                 <div class="span4">
-                                    <input type="text" id="hexSubtract1" pattern="[\dA-Fa-f]" />
-                                    <br />
-                                    -
-                                    <input type="text" id="hexSubtract2" pattern="[\dA-Fa-f]"/>
+                                    <input class="offset1 span8" type="text" id="hexSubtract1" pattern="[\dA-Fa-f]" />
                                 </div>
-                                <span> <span class="output" id="hexSubtractOutput"> </span> </span>
                             </div>
+                            <div class="row-fluid">
+                                <div class="span1">
+                                    <label for="subtractDec">Decimal: </label>
+                                </div>
+                                <div class="span1 right-border">
+                                    <input type="radio" name="subtractRadix" value="10" id="subtractDec" />
+                                </div>
+                                <div class="span1">
+                                    <label for="subSigned">Signed: </label>
+                                </div>
+                                <div class="span1 right-border">
+                                    <input type="radio" name="subtractType" value="signed" id="subSigned" />
+                                </div>
+                                <div class="span4">
+                                    <div class="input-prepend">
+                                        <span class="add-on">-</span>
+                                        <input class="span8" type="text" id="hexSubtract2" pattern="[\dA-Fa-f]"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row-fluid">
+                                <div class="span1">
+                                    <label for="subtractBin">Binary: </label>
+                                </div>
+                                <div class="span1 right-border">
+                                    <input type="radio" name="subtractRadix" value="2" id="subtractBin" />
+                                </div>
+                                <div class="span2 right-border">
+                                </div>
+                                <div class="span4">
+                                    <strong>
+                                        <span class="offset1 span8 output" id="hexSubtractOutput"> </span>
+                                    </strong>
+                                </div>
+                            </div>
+                            <div class="alert hide" id="subtractorError"> </div>
                         </div>
                     </div>
                 </div>
