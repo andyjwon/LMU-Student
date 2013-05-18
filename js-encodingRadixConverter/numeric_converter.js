@@ -86,7 +86,7 @@ $(function () {
          * Conversion table with varying representations of that integer.
          */
         updateConversionFields = function (newValue) {
-            var numBits = $("input:radio[name=bitSelect]:checked").val(),
+            var numBits = $("#bitSelect").val(),
                 maxNum = Math.pow(2, numBits);
 
             clearOutput();
@@ -525,31 +525,31 @@ $(function () {
     /********************* End Input Handler for Adder ***********************/
 
     /***************** Input Handlers for Conversion Table *******************/
-    $("input:radio[name=bitSelect]").click(function () {
+    $("#bitSelect").on('change', function () {
         if (lastConverted !== "") {
             $("#" + lastConverted).trigger('input');
         }
     });
-    $("#udec").bind('input', function () {
+    $("#udec").on('input', function () {
         if ($("#udec").val()) {
             updateConversionFields(parseInt($("#udec").val(), 10));
             lastConverted = "udec";
         }
     });
-    $("#sdec").bind('input', function () {
+    $("#sdec").on('input', function () {
         if ($("#sdec").val()) {
             updateConversionFields(getUnsignedDec(parseInt($("#sdec").val(), 10),
-                Math.pow(2, $("input:radio[name=bitSelect]:checked").val())));
+                Math.pow(2, $("#bitSelect").val())));
             lastConverted = "sdec";
         }
     });
-    $("#hex").bind('input', function () {
+    $("#hex").on('input', function () {
         if ($("#hex").val()) {
             updateConversionFields(parseInt($("#hex").val(), 16));
             lastConverted = "hex";
         }
     });
-    $("#bin").bind('input', function () {
+    $("#bin").on('input', function () {
         if ($("#bin").val()) {
             updateConversionFields(parseInt($("#bin").val(), 2));
             lastConverted = "bin";
@@ -558,12 +558,12 @@ $(function () {
     /*************** End Input Handlers for Conversion Table *****************/
 
     /***************** Input Handlers for Bytes Conversion *******************/
-    $("#tensBytes").bind('change', function () {
+    $("#tensBytes").on('change', function () {
         if (lastBytesEntered !== "") {
             $("#" + lastBytesEntered).trigger('input');
         }
     });
-    $("#twosBytes").bind('change', function () {
+    $("#twosBytes").on('change', function () {
         if (lastBytesEntered !== "") {
             $("#" + lastBytesEntered).trigger('input');
         }
@@ -589,7 +589,7 @@ $(function () {
             }
         }
     });
-    $("#tensByteInput").bind('input', function () {
+    $("#tensByteInput").on('input', function () {
         clearOutput();
         lastBytesEntered = "tensByteInput";
         var tens = parseInt($("#tensByteInput").val(), 10);
@@ -606,7 +606,7 @@ $(function () {
             }
         }
     });
-    $("#twosByteInput").bind('input', function () {
+    $("#twosByteInput").on('input', function () {
         clearOutput();
         lastBytesEntered = "twosByteInput";
         var twos = parseInt($("#twosByteInput").val(), 10),
@@ -627,7 +627,7 @@ $(function () {
     /*************** End Input Handlers for Bytes Conversion *****************/
 
     /******************* Input Handlers for UTF Encodings ********************/
-    $("#utf32Hex").bind('input', function () {
+    $("#utf32Hex").on('input', function () {
         var hex32 = parseInt($("#utf32Hex").val(), 16);
         if (validateUtfInput(hex32)) {
             updateUtf32to16(parseInt(hex32.toString(10), 10), 10);
@@ -635,35 +635,35 @@ $(function () {
             $("#utf32Bin").val(hex32.toString(2));
         }
     });
-    $("#utf32Bin").bind('input', function () {
+    $("#utf32Bin").on('input', function () {
         var bin32 = parseInt($("#utf32Bin").val(), 2);
         if (validateUtfInput(bin32)) {
             updateUtf32to16(bin32, 32);
             $("#utf32Hex").val(bin32.toString(16).toUpperCase());
         }
     });
-    $("#utf16Hex").bind('input', function () {
+    $("#utf16Hex").on('input', function () {
         var hex16 = parseInt($("#utf16Hex").val(), 16);
         if (validateUtfInput(hex16)) {
             updateUtf16(parseInt(hex16.toString(2), 2));
             $("#utf16Bin").val(hex16.toString(2));
         }
     });
-    $("#utf16Bin").bind('input', function () {
+    $("#utf16Bin").on('input', function () {
         var bin16 = parseInt($("#utf16Bin").val(), 2);
         if (validateUtfInput(bin16)) {
             updateUtf16(bin16);
             $("#utf16Hex").val(bin16.toString(16).toUpperCase());
         }
     });
-    $("#utf8Hex").bind('input', function () {
+    $("#utf8Hex").on('input', function () {
         var hex8 = parseInt($("#utf8Hex").val(), 16);
         if (validateUtfInput(hex8)) {
             updateUtf8(parseInt(hex8.toString(2), 2), 8);
             $("#utf8Bin").val(hex8.toString(2));
         }
     });
-    $("#utf8Bin").bind('input', function () {
+    $("#utf8Bin").on('input', function () {
         var bin8 = parseInt($("#utf8Bin").val(), 2);
         if (validateUtfInput(bin8)) {
             updateUtf8(bin8, 8);
