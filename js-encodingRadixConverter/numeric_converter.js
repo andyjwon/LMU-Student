@@ -20,6 +20,8 @@ $(function () {
          */
         clearOutput = function () {
             $("#conversionOutput").html('');
+            $("#conversionError").html('');
+            $("#conversionError").hide();
             $("#hexAddOutput").html('');
             $("#hexSubtractOutput").html('');
             $("#bytesOutput").html('');
@@ -96,9 +98,10 @@ $(function () {
                 $("#conversionOutput")
                     .append("Sorry, but I can't recognize your number.");
             } else if (newValue > maxNum - 1 || newValue < 0) {
-                $("#conversionOutput")
-                    .append("Sorry, but your value doesn't fit in a " +
+                $("#conversionError")
+                    .append("<strong>Warning!</strong> Sorry, but your value doesn't fit in a " +
                             numBits + " bit system.");
+                $('#conversionError').show();
             } else {
                 $("#udec").val(newValue.toString(10));
                 $("#hex").val(newValue.toString(16).toUpperCase());
