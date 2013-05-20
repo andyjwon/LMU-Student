@@ -15,7 +15,7 @@ $(function () {
                 + d.getMinutes() + ":" + d.getSeconds();
         },
 
-        notifyInputValid = function () {
+        notifyInputValid = function (length) {
             $("#notify")
                 .html(length)
                 .removeClass("requirement")
@@ -23,7 +23,7 @@ $(function () {
             $("#submit,#clear").removeAttr("disabled");
         },
 
-        notifyInputInvalid = function () {
+        notifyInputInvalid = function (length) {
             $("#notify")
                 .removeClass("approval")
                 .addClass("requirement")
@@ -35,9 +35,9 @@ $(function () {
             var length = $("#posting").val().length;
 
             if (length && length <= 140) {
-                notifyInputValid();
+                notifyInputValid(length);
             } else {
-                notifyInputInvalid();
+                notifyInputInvalid(length);
                 // If length == 0.
                 if (!length) {
                     $("#clear").attr({ disabled: "disabled" });
