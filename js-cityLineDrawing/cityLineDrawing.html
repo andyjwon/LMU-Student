@@ -11,11 +11,16 @@
         <title>Random City Skyline Drawing</title>
         <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/css/bootstrap-combined.min.css">
         <link rel="stylesheet" href="cityLineDrawing.css" type="text/css" />
+        <style type="text/css">
+            .center {
+                text-align: center;
+            }
+        </style>
     </head>
     <body>
         <div class="container-fluid">
             <div class="row-fluid">
-                <div class="span12" style="text-align: center;">
+                <div class="span12 center">
                     <h2>Random City Skyline</h2>
                 </div>
             </div>
@@ -27,8 +32,14 @@
                     </canvas>
                 </div>
             </div>
+            <div class="row-fluid">
+                <div class="span12 center" style="margin-top: 20px;">
+                    <button id="reload" class="btn btn-info" type="button">Reload Page</button>
+                </div>
+            </div>
         </div>
 
+        <script src="http://code.jquery.com/jquery-latest.min.js"></script>
         <script src="cityLineDrawing.js"></script>
     </body>
 </html>

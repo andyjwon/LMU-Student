@@ -4,7 +4,7 @@
  *  Created by Andrew Won and last updated on 01-26-2012
  */
 (function () {
-    var canvas = document.getElementById("canvas"),
+    var canvas = $('#canvas')[0],
         renderingContext = canvas.getContext("2d"),
         Y_UNIT = canvas.height / 20,
         X_UNIT = 20,
@@ -95,7 +95,7 @@
     renderingContext.fillStyle = color.FLOOR;
     renderingContext.fillRect(
             0,
-            0.9 * canvas.height, 
+            0.9 * canvas.height,
             canvas.width,
             0.1 * canvas.height
         );
@@ -114,4 +114,8 @@
         drawBuilding(x, (canvas.height * 0.9) - 1, currentHeight, currentWidth);
         x += currentWidth + 3;
     }
+
+    $('#reload').on('click', function() {
+        location.reload();
+    });
 }());
