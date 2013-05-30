@@ -104,34 +104,42 @@
                     <div id="adder" class="accordion-body collapse in">
                         <div class="accordion-inner">
                             <div class="row-fluid">
-                                <div class="span1">
-                                    <label for="addHex">Hex: </label>
+                                <div class="span2 right-border">
+                                    <div class="offset2 span1">
+                                        <input type="radio" checked name="addRadix" value=16 id="addHex" />
+                                    </div>
+                                    <div class="offset1 span2">
+                                        <label for="addHex">Hex</label>
+                                    </div>
                                 </div>
-                                <div class="span1 right-border">
-                                    <input type="radio" checked name="addRadix" value=16 id="addHex" />
-                                </div>
-                                <div class="span1">
-                                    <label for="addUnsigned">Unsigned: </label>
-                                </div>
-                                <div class="span1 right-border">
-                                    <input type="radio" checked name="addType" value="unsigned" id="addUnsigned" />
+                                <div class="span2 right-border">
+                                    <div class="offset2 span1">
+                                        <input type="radio" checked name="addType" value="unsigned" id="addUnsigned" />
+                                    </div>
+                                    <div class="offset1 span2">
+                                        <label for="addUnsigned">Unsigned</label>
+                                    </div>
                                 </div>
                                 <div class="span4">
                                     <input class="offset1 span8" type="text" id="hexAdd1" pattern="[\dA-Fa-f]" />
                                 </div>
                             </div>
                             <div class="row-fluid">
-                                <div class="span1">
-                                    <label for="addDec">Decimal: </label>
+                                <div class="span2 right-border">
+                                    <div class="offset2 span1">
+                                        <input type="radio" name="addRadix" value=10 id="addDec" />
+                                    </div>
+                                    <div class="offset1 span2">
+                                        <label for="addDec">Decimal</label>
+                                    </div>
                                 </div>
-                                <div class="span1 right-border">
-                                    <input type="radio" name="addRadix" value=10 id="addDec" />
-                                </div>
-                                <div class="span1">
-                                    <label for="addModular">Modular: </label>
-                                </div>
-                                <div class="span1 right-border">
-                                    <input type="radio" name="addType" value="modular" id="addModular" />
+                                <div class="span2 right-border">
+                                    <div class="offset2 span1">
+                                        <input type="radio" name="addType" value="modular" id="addModular" />
+                                    </div>
+                                    <div class="offset1 span2">
+                                        <label for="addModular">Modular</label>
+                                    </div>
                                 </div>
                                 <div class="span4">
                                     <div class="input-prepend">
@@ -141,17 +149,21 @@
                                 </div>
                             </div>
                             <div class="row-fluid">
-                                <div class="span1">
-                                    <label for="addBin">Binary: </label>
+                                <div class="span2 right-border">
+                                    <div class="offset2 span1">
+                                        <input type="radio" name="addRadix" value=2 id="addBin" />
+                                    </div>
+                                    <div class="offset1 span2">
+                                        <label for="addBin">Binary</label>
+                                    </div>
                                 </div>
-                                <div class="span1 right-border">
-                                    <input type="radio" name="addRadix" value=2 id="addBin" />
-                                </div>
-                                <div class="span1">
-                                    <label for="addSaturated">Saturated: </label>
-                                </div>
-                                <div class="span1 right-border">
-                                    <input type="radio" name="addType" value="saturated" id="addSaturated" />
+                                <div class="span2 right-border">
+                                    <div class="offset2 span1">
+                                        <input type="radio" name="addType" value="saturated" id="addSaturated" />
+                                    </div>
+                                    <div class="offset1 span2">
+                                        <label for="addSaturated">Saturated</label>
+                                    </div>
                                 </div>
                                 <div class="span4">
                                     <div class="offset1 span8">
@@ -178,34 +190,42 @@
                     <div id="subtractor" class="accordion-body collapse in">
                         <div class="accordion-inner">
                             <div class="row-fluid">
-                                <div class="span1">
-                                    <label for="subtractHex">Hex: </label>
+                                <div class="span2 right-border">
+                                    <div class="offset2 span1">
+                                        <input type="radio" checked name="subtractRadix" value="16" id="subtractHex" />
+                                    </div>
+                                    <div class="offset1 span2">
+                                        <label for="subtractHex">Hex</label>
+                                    </div>
                                 </div>
-                                <div class="span1 right-border">
-                                    <input type="radio" checked name="subtractRadix" value="16" id="subtractHex" />
-                                </div>
-                                <div class="span1">
-                                    <label for="subUnsigned">Unsigned: </label>
-                                </div>
-                                <div class="span1 right-border">
-                                    <input type="radio" checked name="subtractType" value="unsigned" id="subUnsigned" />
+                                <div class="span2 right-border">
+                                    <div class="offset2 span1">
+                                        <input type="radio" checked name="subtractType" value="unsigned" id="subUnsigned" />
+                                    </div>
+                                    <div class="offset1 span2">
+                                        <label for="subUnsigned">Unsigned</label>
+                                    </div>
                                 </div>
                                 <div class="span4">
                                     <input class="offset1 span8" type="text" id="hexSubtract1" pattern="[\dA-Fa-f]" />
                                 </div>
                             </div>
                             <div class="row-fluid">
-                                <div class="span1">
-                                    <label for="subtractDec">Decimal: </label>
+                                <div class="span2 right-border">
+                                    <div class="offset2 span1">
+                                        <input type="radio" name="subtractRadix" value="10" id="subtractDec" />
+                                    </div>
+                                    <div class="offset1 span2">
+                                        <label for="subtractDec">Decimal</label>
+                                    </div>
                                 </div>
-                                <div class="span1 right-border">
-                                    <input type="radio" name="subtractRadix" value="10" id="subtractDec" />
-                                </div>
-                                <div class="span1">
-                                    <label for="subSigned">Signed: </label>
-                                </div>
-                                <div class="span1 right-border">
-                                    <input type="radio" name="subtractType" value="signed" id="subSigned" />
+                                <div class="span2 right-border">
+                                    <div class="offset2 span1">
+                                        <input type="radio" name="subtractType" value="signed" id="subSigned" />
+                                    </div>
+                                    <div class="offset1 span2">
+                                        <label for="subSigned">Signed</label>
+                                    </div>
                                 </div>
                                 <div class="span4">
                                     <div class="input-prepend">
@@ -215,11 +235,13 @@
                                 </div>
                             </div>
                             <div class="row-fluid">
-                                <div class="span1">
-                                    <label for="subtractBin">Binary: </label>
-                                </div>
-                                <div class="span1 right-border">
-                                    <input type="radio" name="subtractRadix" value="2" id="subtractBin" />
+                                <div class="span2 right-border">
+                                    <div class="offset2 span1">
+                                        <input type="radio" name="subtractRadix" value="2" id="subtractBin" />
+                                    </div>
+                                    <div class="offset1 span2">
+                                        <label for="subtractBin">Binary</label>
+                                    </div>
                                 </div>
                                 <div class="span2 right-border">
                                 </div>
