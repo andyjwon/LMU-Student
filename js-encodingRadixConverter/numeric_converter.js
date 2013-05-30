@@ -700,4 +700,8 @@ $(function () {
             });
         };
     }
+
+    $('.accordion').on('show hide', function (n) {
+        $(n.target).siblings('.accordion-heading').find('.accordion-toggle i').toggleClass('icon-chevron-up icon-chevron-down');
+    });
 });
